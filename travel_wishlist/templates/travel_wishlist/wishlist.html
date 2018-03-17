@@ -1,0 +1,29 @@
+{% extends 'travel_wishlist/base.html' %}
+{% block content %}
+<h1>Travel Wishlist</h1>
+
+<form method="POST" action="{% url 'place_list' %}">
+  {% csrf_token %}
+  {{ new_place_form}}
+  <button id = "add-new-place" type ="submit">Add</button>
+</form>
+
+{% for place in places %}
+
+<div class ="wishlist-place"> <!--wishlist-place class supplied-->
+  <span id = "place-name-{{place.pk}}" class="visited-text">{{place.name}}</span> <!--add span markup so css can identify this elements we want to style-->
+  <!--this will look for specified url from urls.py; a process called reverse lookup-->
+  <form class ="visited-form" method ="POST" action ="{% url 'place_is_visited' %}">
+    {% csrf_token %}
+    <input type = "hidden" name = "pk" value = "{{place.pk}}">
+    <button id = "mark-visited-{{place.pk}}" type = "submit">Visited!</button>
+  </form>
+</div>
+
+{% empty %}
+
+<P>You have no places in your wishlist</p>
+
+{% endfor %}
+
+{% endblock %}
