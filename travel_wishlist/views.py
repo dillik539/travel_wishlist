@@ -31,8 +31,8 @@ def places_visited(request):
 #         place.save() # save the place in the database
 #     return redirect('place_list')
 
-def place_info(request):
-    pk = request.POST.get('pk')
+def place_info(request, pk):
+    #pk = request.POST.get(pk)
     place = get_object_or_404(Place, pk = pk)
     if not place.visited:
         form = PlaceInfoForm()

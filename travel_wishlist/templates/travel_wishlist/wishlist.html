@@ -11,7 +11,7 @@
 <div class ="wishlist-place"> <!--wishlist-place class supplied-->
 {% for place in places %}
 
-  <p><a href = "{% url 'place_info' %}">
+  <p><a href = "{% url 'place_info' pk=place.pk %}">
   <span id = "place-name-{{place.pk}}">{{place.name}}</span></a></p> <!--add span markup so css can identify this elements we want to style-->
 
 {% empty %}
